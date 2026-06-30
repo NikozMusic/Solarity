@@ -1,0 +1,11 @@
+Copyright (c) 2026 The Solstice Team. All rights reserved.
+
+This software and its source code are proprietary and may not be copied,
+modified, distributed, or used in any form without explicit written permission
+from the copyright holder.
+
+You may view this repository for educational and reference purposes only.
+No permission is granted to redistribute, sublicense, or publish this software
+or any derived works.
+
+Unauthorized distribution of compiled binaries or source code is prohibited.
