@@ -1,4 +1,4 @@
-> **⚠️ Warning: Major Spoilers Ahead! ⚠️**
+**⚠️ Warning: Major Spoilers Ahead! ⚠️**
 
 Reading through this repository may reveal major story elements, secrets, and implementation details from **Solarity**. While the mod is designed to be discovered through gameplay, and all puzzles are **seed-specific** to prevent simply looking up the answers, browsing the source code can still reduce—or completely spoil—the intended experience.
 
