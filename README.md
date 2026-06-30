@@ -8,24 +8,10 @@ If you want to experience the mod blind, **consider coming back after you've pla
 
 ## About
 
-Everything in this repository is developed by the **Solstice Team**.
+Everything in this repository is developed by **The Solstice Team**.
 
----
+This repository is open source so you can inspect the files yourself, please be warned as stated several times in this readme that this will spoil the gameplay for you,
 
-## Open Source
+If you haven't played Solarity yet, close this page now and return once you've experienced the mod for yourself as to not wreck your first playthrough, or dont I'm not you're mom.
 
-Solarity is fully open source.
-
-Many horror mods incorporate forms of **meta gameplay** (Meaning any kind of gameplay that takes place out of world on your host system), requiring players to trust that nothing unexpected is happening outside the game itself, even something as simple and harmless as changing your desktop wallpaper can be annoying as you then have to reset it manually.
-
-While Solarity ***doesn't actually use meta gameplay*** we still believe it's good practice to let players see exactly what they're running and not have to take our word for it. :3
-
-By making the entire source code publicly available you never have to take our word for it as you can verify everything yourself, if you know java works that is...
-
----
-
-## You've been warned...
-
-If you haven't played Solarity yet, we recommend closing this page now and returning once you've experienced the mod for yourself as to not wreck your first playthrough.
-
--Solstice
+- The Solstice Team
