@@ -1,6 +1,6 @@
 **⚠️ Warning: Major Spoilers Ahead! ⚠️**
 
-Reading through this repository may reveal major story elements, secrets, and implementation details from **Solarity**. While the mod is designed to be discovered through gameplay, and all puzzles are **seed-specific** to prevent simply looking up the answers, browsing the source code can still reduce—or completely spoil—the intended experience.
+Reading through this repository may reveal gameplay details from **Solarity** that could ruin a first playthrough. While the mod is designed to be discovered through gameplay, and all puzzles are **seed-specific** to prevent simply looking up the answers, browsing the source code can still reduce or completely spoil the intended experience.
 
 If you want to experience the mod blind, **consider coming back after you've played it.**
 
