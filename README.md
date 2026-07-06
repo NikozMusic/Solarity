@@ -16,4 +16,4 @@ This repository is open source so you can inspect the files yourself, please be 
 
 If you haven't played Solarity yet, close this page now and return once you've experienced the mod for yourself as to not wreck your first playthrough, or dont I'm not you're mom.
 
-- The Solstice Team
+*-The Solstice Team*

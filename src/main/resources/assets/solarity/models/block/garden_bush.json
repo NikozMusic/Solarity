@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "solarity:block/garden_bush"
+  },
+  "render_type": "translucent"
+}
+
