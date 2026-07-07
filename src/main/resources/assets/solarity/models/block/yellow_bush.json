@@ -3,6 +3,6 @@
   "textures": {
     "all": "solarity:block/yellow_bush"
   },
-  "render_type": "translucent"
+  "render_type": "cutout"
 }
 

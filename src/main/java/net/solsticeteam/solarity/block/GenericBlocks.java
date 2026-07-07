@@ -32,6 +32,22 @@ public class GenericBlocks {
                     .noOcclusion()
                     .sound(SoundType.AZALEA_LEAVES)));
 
+    //YELLOW FLOWER BUSH
+    public static final DeferredBlock<Block> YELLOW_BUSH = registerBlock("yellow_bush",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .sound(SoundType.AZALEA_LEAVES)));
+
+    //CYAN FLOWER BUSH
+    public static final DeferredBlock<Block> CYAN_BUSH = registerBlock("cyan_bush",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .noOcclusion()
+                    .sound(SoundType.AZALEA_LEAVES)));
+
     //MAGENTA FLOWER BUSH
     public static final DeferredBlock<Block> MAGENTA_BUSH = registerBlock("magenta_bush",
             () -> new Block(BlockBehaviour.Properties.of()
@@ -40,13 +56,9 @@ public class GenericBlocks {
                     .noOcclusion()
                     .sound(SoundType.AZALEA_LEAVES)));
 
-    //YELLOW FLOWER BUSH
-    public static final DeferredBlock<Block> YELLOW_BUSH = registerBlock("yellow_bush",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(4f)
-                    .requiresCorrectToolForDrops()
-                    .noOcclusion()
-                    .sound(SoundType.AZALEA_LEAVES)));
+
+
+
 
 
 

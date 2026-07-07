@@ -7,10 +7,20 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
-
+    //Accessibility Config
     public static final ModConfigSpec.BooleanValue SCREEN_SHAKE_ENABLED = BUILDER
             .comment("Toggle screen shake effects")
-            .define("screenShakeEnabled", true);
+            .define("screenShake", true);
+
+    public static final ModConfigSpec.BooleanValue FLASHING_LIGHTS_ENABLED = BUILDER
+            .comment("Toggle flashy screen effects")
+            .define("flashingLights", true);
+
+    //Gameplay Config
+    public static final ModConfigSpec.BooleanValue MULTIPLAYER_ENTITIES_ENABLED = BUILDER
+            .comment("If multiplayer exclusive entities are enabled in singleplayer")
+            .define("multiplayerEntitiesInSingleplayer", false);
+
 
     public static final ModConfigSpec.IntValue GRACE_PERIOD_DAYS = BUILDER
             .comment("Time it takes for events to start happening upon starting a new world")

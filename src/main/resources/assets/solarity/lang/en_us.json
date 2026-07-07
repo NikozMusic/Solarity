@@ -1,6 +1,8 @@
 {
 
-
   "block.solarity.garden_bush" : "Garden Bush",
-  "block.solarity.garden_bush" : "Garden Bush"
+  "block.solarity.yellow_bush" : "Yellow Bush",
+  "block.solarity.cyan_bush" : "Cyan Bush",
+  "block.solarity.magenta_bush" : "Magenta Bush"
+
 }

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "solarity:block/garden_bush"
+    "all": "solarity:block/cyan_bush"
   },
   "render_type": "cutout"
 }
