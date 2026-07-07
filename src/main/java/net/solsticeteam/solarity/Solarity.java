@@ -1,5 +1,6 @@
 package net.solsticeteam.solarity;
 
+import net.neoforged.fml.config.ModConfig;
 import net.solsticeteam.solarity.block.GenericBlocks;
 import net.solsticeteam.solarity.item.GenericItems;
 import org.slf4j.Logger;
@@ -13,21 +14,24 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Solarity.MODID)
 public class Solarity {
-    // Define mod id in a common place for everything to reference
     public static final String MODID = "solarity";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    // The constructor for the mod class is the first code that is run when your mod is loaded.
-    // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
+    //Main Class
     public Solarity(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);
 
+
+        // Register Content
         GenericItems.register(modEventBus);
         GenericBlocks.register(modEventBus);
+
+
+        //Load mod config, make new config file if the TOML doesn't exist
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
     }
 

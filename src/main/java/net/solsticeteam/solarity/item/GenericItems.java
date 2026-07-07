@@ -5,6 +5,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.solsticeteam.solarity.Solarity;
 
 public class GenericItems {
+
+    /*
+    * This file is for GENERIC ITEMS. generic items have no special code or function attached to them
+    * */
+
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(Solarity.MODID); // Define what an item is
 
 
