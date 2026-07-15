@@ -8,11 +8,9 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 @Mod(Solarity.MODID)
 public class Solarity {
@@ -24,13 +22,11 @@ public class Solarity {
         // Register the commonSetup method for mod loading
         modEventBus.addListener(this::commonSetup);
 
-
         // Register Content
         GenericItems.register(modEventBus);
         GenericBlocks.register(modEventBus);
 
-
-        //Load mod config, make new config file if the TOML doesn't exist
+        //Load mod config, make new config file if the TOML doesn't existb
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
     }
