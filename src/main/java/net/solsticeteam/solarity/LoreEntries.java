@@ -24,9 +24,9 @@ public class LoreEntries {
             if (!unlocked.add(entryId)) return; // already unlocked, nothing to do
 
             writeUnlocked(file, unlocked);
-            Solarity.LOGGER.info("Unlocked lore entry: {}", entryId);
+            Solarity.LOGGER.info("Unlocked entry: {}", entryId);
         } catch (IOException e) {
-            Solarity.LOGGER.warn("Failed to unlock lore entry {}", entryId, e);
+            Solarity.LOGGER.warn("Failed to unlock entry {}", entryId, e);
         }
     }
 

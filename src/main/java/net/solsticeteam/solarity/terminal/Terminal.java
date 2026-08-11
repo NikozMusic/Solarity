@@ -104,15 +104,10 @@ public class Terminal {
 
     private void printBanner() {
 
-        String version = ModList.get()
-                .getModContainerById("solarity")
-                .map(container -> container.getModInfo().getVersion().toString())
-                .orElse("UNKNOWN");
-
 
         System.out.println(
                 CYAN +
-                         "Sol Project Archive Manager [SPAM] v" + version +
+                         "Sol Project Archive Manager [SPAM] v2.1" +
                         RESET
         );
 
@@ -184,7 +179,7 @@ public class Terminal {
         if (entries.isEmpty()) {
 
             System.out.println(
-                    DIM + "  NO ENTRIES." + RESET
+                    DIM + "No Entries Found." + RESET
             );
 
             System.out.println();

@@ -17,7 +17,6 @@ public class EntryReader {
     private static final String ENTRY_RESOURCE_PATH = "/net/solsticeteam/solarity/entries/";
     private static final Pattern ID_PATTERN = Pattern.compile("\"([^\"]+)\"");
 
-    /** IDs the player has unlocked, read from the world save. */
     public static Set<String> listUnlockedIds(File savePath) {
         Set<String> ids = new LinkedHashSet<>();
         File file = new File(savePath, "solarity/unlocked_entries.json");
@@ -28,18 +27,18 @@ public class EntryReader {
             Matcher m = ID_PATTERN.matcher(content);
             while (m.find()) ids.add(m.group(1));
         } catch (IOException ignored) {
-            // treat unreadable file as "no entries unlocked"
+            //Do nothing
         }
         return ids;
     }
 
-    /** First line of the entry's txt resource, or null if it doesn't exist. */
+    //First line of the entry's txt resource, or null if it doesn't exist.
     public static String getTitle(String entryId) {
         String[] lines = readResourceLines(entryId);
         return lines == null || lines.length == 0 ? null : lines[0];
     }
 
-    /** Everything after the title line, joined back with newlines. */
+    //Rest of the file
     public static String getBody(String entryId) {
         String[] lines = readResourceLines(entryId);
         if (lines == null || lines.length <= 1) return "";

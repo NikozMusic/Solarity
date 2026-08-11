@@ -28,14 +28,12 @@ public class Solarity {
     public static final String MODID = "solarity";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    // Real-time heartbeat, NOT tick-based: singleplayer pauses tick events when
-    // the window loses focus (e.g. alt-tabbing to run the terminal), which would
-    // freeze a tick-counter heartbeat and make it look stale immediately.
+
     private ScheduledExecutorService heartbeatExecutor;
 
     public Solarity(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
-        NeoForge.EVENT_BUS.register(this); // for server start/stop heartbeat lifecycle
+        NeoForge.EVENT_BUS.register(this);
 
         GenericItems.register(modEventBus);
         GenericBlocks.register(modEventBus);
@@ -56,7 +54,6 @@ public class Solarity {
             t.setDaemon(true);
             return t;
         });
-        // Fires every 5s on a real-time clock, independent of game pause state.
         heartbeatExecutor.scheduleAtFixedRate(() -> writeHeartbeat(server), 0, 5, TimeUnit.SECONDS);
     }
 
