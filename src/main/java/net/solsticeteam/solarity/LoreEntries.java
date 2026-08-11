@@ -21,7 +21,7 @@ public class LoreEntries {
             File file = getUnlockedFile(server);
             Set<String> unlocked = readUnlocked(file);
 
-            if (!unlocked.add(entryId)) return; // already unlocked, nothing to do
+            if (!unlocked.add(entryId)) return;
 
             writeUnlocked(file, unlocked);
             Solarity.LOGGER.info("Unlocked entry: {}", entryId);

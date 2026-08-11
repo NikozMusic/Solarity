@@ -1,4 +1,3 @@
-
 package net.solsticeteam.solarity.terminal;
 
 import net.solsticeteam.solarity.Solarity;
@@ -53,7 +52,7 @@ public class Terminal {
         }
 
         printStatus("Host Connection Established...");
-        printStatus("Session Registered: " + session.world.toUpperCase());
+        printStatus("Session Registered: " + session.world);
 
         System.out.println();
 
@@ -79,21 +78,21 @@ public class Terminal {
                 continue;
             }
 
-            String command = input.toUpperCase();
+            String command = input;
 
-            if (command.equals("EXIT")) {
+            if (command.equals("exit")) {
                 break;
 
-            } else if (command.equals("HELP")) {
+            } else if (command.equals("help")) {
                 handleHelp();
 
-            } else if (command.equals("CLEAR")) {
+            } else if (command.equals("clear")) {
                 clear();
 
-            } else if (command.equals("LIST")) {
+            } else if (command.equals("list")) {
                 handleList();
 
-            } else if (command.startsWith("VIEW ")) {
+            } else if (command.startsWith("view ")) {
                 handleRead(command.substring(5).trim());
 
             } else {
@@ -107,7 +106,7 @@ public class Terminal {
 
         System.out.println(
                 CYAN +
-                         "Sol Project Archive Manager [SPAM] v2.1" +
+                        "Sol Project Archive Manager [SPAM] v2.1" +
                         RESET
         );
 
@@ -190,13 +189,11 @@ public class Terminal {
 
             String title = EntryReader.getTitle(id);
 
-            System.out.print(
-                    GREEN + "  [" + id.toUpperCase() + "]" + RESET
-            );
+            System.out.print(GREEN + id + ".txt" + RESET);
 
             if (title != null) {
                 System.out.print(
-                        " " + WHITE + title.toUpperCase() + RESET
+                        " " + WHITE + title + RESET
                 );
             }
 
@@ -214,7 +211,6 @@ public class Terminal {
 
     private void handleRead(String entryId) {
 
-        entryId = entryId.toUpperCase();
 
         Set<String> entries =
                 EntryReader.listUnlockedIds(session.savePath);
@@ -222,7 +218,7 @@ public class Terminal {
         if (!entries.contains(entryId) || !EntryReader.entryExists(entryId)) {
 
             error(
-                    "Entry '" + entryId + "' Not Found."
+                    "Entry '" + entryId + ".txt' Not Found."
             );
 
             return;
@@ -236,8 +232,8 @@ public class Terminal {
         System.out.println(
                 WHITE + BOLD +
                         (title != null
-                                ? title.toUpperCase()
-                                : "UNKNOWN ENTRY") + ".txt" +
+                                ? title
+                                : "Unknown Entry") + ".txt" +
                         RESET
         );
 
@@ -256,7 +252,7 @@ public class Terminal {
         System.out.println();
 
         if (body != null) {
-            System.out.println(body.toUpperCase());
+            System.out.println(body);
         }
 
         System.out.println();
@@ -272,7 +268,7 @@ public class Terminal {
 
         System.out.println(
                 GREEN + "[ OK ] " + RESET +
-                        message.toUpperCase()
+                        message
         );
     }
 
@@ -280,7 +276,7 @@ public class Terminal {
 
         System.out.println(
                 YELLOW + "[WARN] " + RESET +
-                        message.toUpperCase()
+                        message
         );
     }
 
@@ -288,7 +284,7 @@ public class Terminal {
 
         System.out.println(
                 RED + "[ERROR] " + RESET +
-                        RED + message.toUpperCase() +
+                        RED + message +
                         RESET
         );
 
