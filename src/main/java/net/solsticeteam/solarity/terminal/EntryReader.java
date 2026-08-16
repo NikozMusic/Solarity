@@ -19,51 +19,85 @@ public class EntryReader {
 
     public static Set<String> listUnlockedIds(File savePath) {
         Set<String> ids = new LinkedHashSet<>();
+
         File file = new File(savePath, "solarity/unlocked_entries.json");
-        if (!file.exists()) return ids;
+
+        if (!file.exists()) {
+            return ids;
+        }
 
         try {
             String content = Files.readString(file.toPath());
             Matcher m = ID_PATTERN.matcher(content);
-            while (m.find()) ids.add(m.group(1));
+
+            while (m.find()) {
+                ids.add(m.group(1));
+            }
+
         } catch (IOException ignored) {
-            //Do nothing
+            // Do nothing
         }
+
         return ids;
     }
 
-    //First line of the entry's txt resource, or null if it doesn't exist.
+    // First line of the entry's txt resource, or null if it doesn't exist.
     public static String getTitle(String entryId) {
         String[] lines = readResourceLines(entryId);
         return lines == null || lines.length == 0 ? null : lines[0];
     }
 
-    //Rest of the file
+    // Rest of the file
     public static String getBody(String entryId) {
         String[] lines = readResourceLines(entryId);
-        if (lines == null || lines.length <= 1) return "";
+
+        if (lines == null || lines.length <= 1) {
+            return "";
+        }
+
         StringBuilder sb = new StringBuilder();
+
         for (int i = 1; i < lines.length; i++) {
             sb.append(lines[i]);
-            if (i < lines.length - 1) sb.append("\n");
+
+            if (i < lines.length - 1) {
+                sb.append("\n");
+            }
         }
+
         return sb.toString();
     }
 
     public static boolean entryExists(String entryId) {
-        try (InputStream in = EntryReader.class.getResourceAsStream(ENTRY_RESOURCE_PATH + entryId + ".txt")) {
+        try (InputStream in =
+                     EntryReader.class.getResourceAsStream(
+                             ENTRY_RESOURCE_PATH + entryId + ".txt")) {
+
             return in != null;
+
         } catch (IOException e) {
             return false;
         }
     }
 
     private static String[] readResourceLines(String entryId) {
-        try (InputStream in = EntryReader.class.getResourceAsStream(ENTRY_RESOURCE_PATH + entryId + ".txt")) {
-            if (in == null) return null;
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8))) {
+        try (InputStream in =
+                     EntryReader.class.getResourceAsStream(
+                             ENTRY_RESOURCE_PATH + entryId + ".txt")) {
+
+            if (in == null) {
+                return null;
+            }
+
+            try (BufferedReader reader =
+                         new BufferedReader(
+                                 new InputStreamReader(
+                                         in,
+                                         StandardCharsets.UTF_8))) {
+
                 return reader.lines().toArray(String[]::new);
             }
+
         } catch (IOException e) {
             return null;
         }

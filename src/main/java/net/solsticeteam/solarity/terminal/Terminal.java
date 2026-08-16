@@ -1,8 +1,5 @@
 package net.solsticeteam.solarity.terminal;
 
-import net.solsticeteam.solarity.Solarity;
-import net.neoforged.fml.ModList;
-
 import java.io.File;
 import java.util.Scanner;
 import java.util.Set;
@@ -10,22 +7,20 @@ import java.util.Set;
 public class Terminal {
 
     // ANSI COLORS
-    private static final String RESET = "\u001B[0m";
-    private static final String BOLD = "\u001B[1m";
-    private static final String DIM = "\u001B[2m";
+    private static final String RESET   = "\u001B[0m";
+    private static final String BOLD    = "\u001B[1m";
+    private static final String DIM     = "\u001B[2m";
 
-    private static final String BLACK = "\u001B[30m";
-    private static final String RED = "\u001B[31m";
-    private static final String GREEN = "\u001B[32m";
-    private static final String YELLOW = "\u001B[33m";
-    private static final String BLUE = "\u001B[34m";
-    private static final String MAGENTA = "\u001B[35m";
-    private static final String CYAN = "\u001B[36m";
-    private static final String WHITE = "\u001B[37m";
+    private static final String RED     = "\u001B[31m";
+    private static final String GREEN   = "\u001B[32m";
+    private static final String YELLOW  = "\u001B[33m";
+    private static final String CYAN    = "\u001B[36m";
+    private static final String WHITE   = "\u001B[37m";
 
     // TERMINAL CONTROL
     private static final String CLEAR_SCREEN = "\u001B[2J\u001B[H";
-    private static final String CLEAR_LINE = "\u001B[2K\r";
+
+    private static final String VERSION = "2.1";
 
     private HostSession session;
 
@@ -36,23 +31,23 @@ public class Terminal {
         File instanceRoot = InstanceLocator.findInstanceRoot();
 
         if (instanceRoot == null) {
-            error("No Session Detected.");
-            SleepFunc();
+            error("No session detected.");
+            sleep();
             return;
         }
 
-        printStatus("Session Connected.");
+        status("Session connected.");
 
         session = HostSession.connect(instanceRoot);
 
         if (session == null) {
-            error("No Host Detected...");
-            SleepFunc();
+            error("No host detected.");
+            sleep();
             return;
         }
 
-        printStatus("Host Connection Established...");
-        printStatus("Session Registered: " + session.world);
+        status("Host connection established.");
+        status("Session registered: " + session.world);
 
         System.out.println();
 
@@ -62,9 +57,7 @@ public class Terminal {
 
         while (true) {
 
-            System.out.print(
-                    BOLD + CYAN + "=> " + RESET
-            );
+            prompt();
 
             String input;
 
@@ -78,7 +71,7 @@ public class Terminal {
                 continue;
             }
 
-            String command = input;
+            String command = input.toLowerCase();
 
             if (command.equals("exit")) {
                 break;
@@ -88,42 +81,59 @@ public class Terminal {
 
             } else if (command.equals("clear")) {
                 clear();
+                printBanner();
 
             } else if (command.equals("list")) {
                 handleList();
 
             } else if (command.startsWith("view ")) {
-                handleRead(command.substring(5).trim());
+                handleRead(input.substring(5).trim());
 
             } else {
-                error("Command Error: " + command);
+                error("Unknown command: " + input);
             }
         }
     }
 
     private void printBanner() {
 
-
         System.out.println(
-                CYAN +
-                        "Sol Project Archive Manager [SPAM] v2.1" +
+                CYAN + BOLD +
+                        "SOL PROJECT ARCHIVE MANAGER" +
                         RESET
         );
 
         System.out.println(
-                CYAN +
-                        "==========================================" +
+                DIM +
+                        "SPAM Terminal Interface v" + VERSION +
+                        RESET
+        );
+
+        System.out.println(
+                DIM +
+                        "----------------------------------------" +
+                        RESET
+        );
+
+        System.out.println(
+                DIM +
+                        "Type HELP for a list of commands." +
                         RESET
         );
 
         System.out.println();
+    }
 
-        System.out.println(
-                DIM + "Type " + WHITE + BOLD + "HELP" +
-                        DIM + " for a list of commands." + RESET
+    private void prompt() {
+
+        System.out.print(
+                CYAN + "user" +
+                        DIM + "@" +
+                        WHITE + "archive" +
+                        DIM + ":~ " +
+                        RESET +
+                        "> "
         );
-
-        System.out.println();
     }
 
     private void handleHelp() {
@@ -131,11 +141,15 @@ public class Terminal {
         System.out.println();
 
         System.out.println(
-                CYAN + BOLD + "Commands:" + RESET
+                CYAN + BOLD +
+                        "Commands" +
+                        RESET
         );
 
         System.out.println(
-                DIM + "--------------------------------------------" + RESET
+                DIM +
+                        "----------------------------------------" +
+                        RESET
         );
 
         printCommand("LIST", "List archives");
@@ -147,16 +161,20 @@ public class Terminal {
         System.out.println();
     }
 
-    private void printCommand(String command, String description) {
+    private void printCommand(
+            String command,
+            String description
+    ) {
 
         System.out.printf(
-                "  %s%-12s%s %s%s%s%n",
-                GREEN,
+                "  " +
+                        GREEN + "%-14s" +
+                        RESET +
+                        DIM + "%s" +
+                        RESET +
+                        "%n",
                 command,
-                RESET,
-                DIM,
-                description,
-                RESET
+                description
         );
     }
 
@@ -165,11 +183,15 @@ public class Terminal {
         System.out.println();
 
         System.out.println(
-                CYAN + BOLD + "Archives:" + RESET
+                CYAN + BOLD +
+                        "Archives" +
+                        RESET
         );
 
         System.out.println(
-                DIM + "--------------------------------------------" + RESET
+                DIM +
+                        "----------------------------------------" +
+                        RESET
         );
 
         Set<String> entries =
@@ -178,7 +200,7 @@ public class Terminal {
         if (entries.isEmpty()) {
 
             System.out.println(
-                    DIM + "No Entries Found." + RESET
+                    DIM + "No entries found." + RESET
             );
 
             System.out.println();
@@ -189,11 +211,15 @@ public class Terminal {
 
             String title = EntryReader.getTitle(id);
 
-            System.out.print(GREEN + id + ".txt" + RESET);
+            System.out.print(
+                    GREEN + id + RESET
+            );
 
-            if (title != null) {
+            if (title != null && !title.isBlank()) {
+
                 System.out.print(
-                        " " + WHITE + title + RESET
+                        DIM + " - " + RESET +
+                                WHITE + title + RESET
                 );
             }
 
@@ -203,7 +229,12 @@ public class Terminal {
         System.out.println();
 
         System.out.println(
-                DIM + entries.size() + " Records." + RESET
+                DIM +
+                        entries.size() +
+                        (entries.size() == 1
+                                ? " record."
+                                : " records.") +
+                        RESET
         );
 
         System.out.println();
@@ -211,14 +242,34 @@ public class Terminal {
 
     private void handleRead(String entryId) {
 
+        if (entryId.toLowerCase().endsWith(".txt")) {
+            entryId =
+                    entryId.substring(
+                            0,
+                            entryId.length() - 4
+                    );
+        }
 
         Set<String> entries =
                 EntryReader.listUnlockedIds(session.savePath);
 
-        if (!entries.contains(entryId) || !EntryReader.entryExists(entryId)) {
+        if (!entries.contains(entryId)) {
 
             error(
-                    "Entry '" + entryId + ".txt' Not Found."
+                    "Entry '" +
+                            entryId +
+                            ".txt' not found."
+            );
+
+            return;
+        }
+
+        if (!EntryReader.entryExists(entryId)) {
+
+            error(
+                    "Archive resource '" +
+                            entryId +
+                            ".txt' not found."
             );
 
             return;
@@ -233,41 +284,51 @@ public class Terminal {
                 WHITE + BOLD +
                         (title != null
                                 ? title
-                                : "Unknown Entry") + ".txt" +
+                                : "Unknown Entry") +
                         RESET
         );
 
         System.out.println(
                 DIM +
-                        "Record: " + entryId +
+                        "Record: " +
+                        entryId +
                         RESET
         );
 
         System.out.println(
-                WHITE +
-                        "============================================" +
+                DIM +
+                        "----------------------------------------" +
                         RESET
         );
 
         System.out.println();
 
-        if (body != null) {
+        if (body != null && !body.isBlank()) {
             System.out.println(body);
+        } else {
+            System.out.println(
+                    DIM +
+                            "[ No data available. ]" +
+                            RESET
+            );
         }
 
         System.out.println();
 
         System.out.println(
-                DIM + "< End Of File >" + RESET
+                GREEN +
+                        "< End Of Record >" +
+                        RESET
         );
 
         System.out.println();
     }
 
-    private void printStatus(String message) {
+    private void status(String message) {
 
         System.out.println(
-                GREEN + "[ OK ] " + RESET +
+                GREEN + "[ OK ] " +
+                        RESET +
                         message
         );
     }
@@ -275,7 +336,8 @@ public class Terminal {
     private void warning(String message) {
 
         System.out.println(
-                YELLOW + "[WARN] " + RESET +
+                YELLOW + "[WARN] " +
+                        RESET +
                         message
         );
     }
@@ -283,7 +345,8 @@ public class Terminal {
     private void error(String message) {
 
         System.out.println(
-                RED + "[ERROR] " + RESET +
+                RED + "[ERROR] " +
+                        RESET +
                         RED + message +
                         RESET
         );
@@ -297,7 +360,7 @@ public class Terminal {
         System.out.flush();
     }
 
-    private void SleepFunc() {
+    private void sleep() {
 
         try {
             Thread.sleep(5000);

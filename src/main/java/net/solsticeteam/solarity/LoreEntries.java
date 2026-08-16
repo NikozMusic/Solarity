@@ -28,7 +28,7 @@ public class LoreEntries {
         } catch (IOException e) {
             Solarity.LOGGER.warn("Failed to unlock entry {}", entryId, e);
         }
-    }
+     }
 
     private static File getUnlockedFile(MinecraftServer server) {
         Path saveRoot = server.getWorldPath(LevelResource.ROOT);

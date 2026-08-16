@@ -20,7 +20,7 @@ public class GenericBlocks {
     /*
     * This file is for GENERIC BLOCKS. generic blocks are blocks that have no special code in them
     * any block that has some kind of unique functionality has to have its own java class file
-    * */
+    */
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(Solarity.MODID); // This defines what a block is for the rest of the class
 
