@@ -1,6 +1,9 @@
 package net.solsticeteam.solarity;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.solsticeteam.solarity.block.GenericBlocks;
 import net.solsticeteam.solarity.item.GenericItems;
 import org.slf4j.Logger;
@@ -67,6 +70,23 @@ public class Solarity {
         file.delete();
     }
 
+    @SubscribeEvent
+    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (!(event.getEntity() instanceof ServerPlayer player)) {
+            return;
+        }
+
+        player.sendSystemMessage(
+                Component.empty()
+                        .append(Component.literal("[WARN]")
+                                .withStyle(style -> style.withColor(0xFF7800)))
+                        .append(Component.literal("  "))
+                        .append(Component.literal(
+                                "SPAM Not Connected. Advanced functions unavailable. Please launch SPAM using the running Java Archive."
+                        ).withStyle(style -> style.withColor(0xFFA348)))
+        );
+    }
+
     private void writeHeartbeat(MinecraftServer server) {
         try {
             File file = new File(FMLPaths.GAMEDIR.get().toFile(), "solarity/session.json");
@@ -79,7 +99,7 @@ public class Solarity {
                 w.write(json);
             }
         } catch (Exception e) {
-            LOGGER.warn("Failed to write Solarity heartbeat", e);
+            LOGGER.warn("Failed to write heartbeat", e);
         }
     }
 }

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class HostSession {
 
-    private static final long STALE_MS = 30_000;
+    private static final long STALE_MS = 30000;
 
     public final String world;
     public final File savePath;

@@ -20,7 +20,7 @@ public class Terminal {
     // TERMINAL CONTROL
     private static final String CLEAR_SCREEN = "\u001B[2J\u001B[H";
 
-    private static final String VERSION = "2.1";
+    private static final String VERSION = "2012.01.20_847";
 
     private HostSession session;
 

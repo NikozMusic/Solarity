@@ -13,12 +13,12 @@ public class Config {
             .define("screenShake", true);
 
     public static final ModConfigSpec.BooleanValue FLASHING_LIGHTS_ENABLED = BUILDER
-            .comment("Toggle flashy screen effects")
+            .comment("Toggle the more flashy screen effects")
             .define("flashingLights", true);
 
     //Gameplay Config
     public static final ModConfigSpec.BooleanValue MULTIPLAYER_ENTITIES_ENABLED = BUILDER
-            .comment("If multiplayer exclusive entities are enabled in singleplayer")
+            .comment("If multiplayer exclusive entities are enabled in singleplayer (currently unused)")
             .define("multiplayerEntitiesInSingleplayer", false);
 
 
